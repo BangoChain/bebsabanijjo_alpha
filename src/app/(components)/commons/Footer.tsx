@@ -76,7 +76,7 @@
 
 // //3rd
 "use client";
-
+import { useEffect, useState } from "react";
 import { Typography, Link, IconButton } from "@mui/material";
 import Image from "next/image";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -84,6 +84,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
+  const [year, setYear] = useState("");
+
+  useEffect(() => {
+    setYear(new Date().getFullYear().toString());
+  }, []);
   return (
     <footer className="bg-gray-100 pt-10">
       {/* Top section */}
@@ -145,8 +150,11 @@ export default function Footer() {
 
       {/* Bottom section */}
       <div className="text-center py-6 text-gray-500 text-sm">
-        <Typography variant="body2" color="textSecondary">
+        {/* <Typography variant="body2" color="textSecondary">
           © {new Date().getFullYear()} Bangochain Labs. All rights reserved.
+        </Typography> */}
+        <Typography variant="body2" color="textSecondary">
+          © {year} Bangochain Labs. All rights reserved.
         </Typography>
         <Typography variant="body2" color="textSecondary">
           Made with ♥ by Nexi Launch
