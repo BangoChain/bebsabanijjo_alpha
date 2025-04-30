@@ -14,6 +14,9 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import { motion } from "framer-motion";
 
+import CampaignIcon from "@mui/icons-material/Campaign";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 const plans = [
   {
     title: "Starter",
@@ -118,9 +121,21 @@ const PricingSection = () => (
         color="text.secondary"
         mb={3}
       >
-        <span>Cancel anytime</span>
-        <span>Unlimited support</span>
-        <span>Free guided setup</span>
+        <span>
+          {" "}
+          <ChangeCircleIcon color="success" fontSize="small" />
+          Cancel anytime
+        </span>
+        <span>
+          {" "}
+          <CampaignIcon color="success" fontSize="small" />
+          Unlimited support
+        </span>
+        <span>
+          {" "}
+          <SettingsSuggestIcon color="success" fontSize="small" />
+          Free guided setup
+        </span>
       </Stack>
     </Box>
 
