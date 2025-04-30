@@ -4,6 +4,7 @@ import FeaturesSection from "@/app/(components)/landing/FeaturesSection";
 import CTASection from "@/app/(components)/landing/CTASection";
 import TestimonialsSection from "@/app/(components)/landing/TestimonialsSection";
 import PricingPlans from "@/app/(components)/landing/PricingSection";
+import PricingPlans2 from "@/app/(components)/landing/PricingSection2";
 import Footer from "@/app/(components)/commons/Footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <TestimonialsSection />
       <CTASection />
       <PricingPlans />
+      <PricingPlans2 />
       <Footer />
     </main>
   );
