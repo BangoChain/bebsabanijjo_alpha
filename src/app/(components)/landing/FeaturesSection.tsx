@@ -162,8 +162,8 @@ export default function FeaturesSection() {
           {features.map((feature, idx) => (
             <Grid
               key={idx}
-              columnSpan={{ xs: 12, sm: 6, md: 4 }}
               component="div"
+              gridColumn={{ xs: "span 12", sm: "span 6", md: "span 4" }}
             >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
