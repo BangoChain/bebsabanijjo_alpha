@@ -34,7 +34,7 @@ const Header = () => {
 
         {/* Right: CTA Button */}
         <Button variant="contained" color="primary">
-          Login / Signup
+          Get early access
         </Button>
       </Toolbar>
     </AppBar>
