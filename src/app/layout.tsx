@@ -57,6 +57,7 @@
 
 import { ThemeProvider } from "@/providers/ThemeProvider.tsx";
 import "./globals.css";
+import { Toaster } from "sonner";
 // import { DefaultSeo } from "next-seo";
 // import SEO from "@/seo/next-seo.config";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
         <ThemeProvider>
           {/* <DefaultSeo {...SEO} /> */}
           {children}
+          <Toaster position="bottom-left" />
         </ThemeProvider>
       </body>
     </html>
