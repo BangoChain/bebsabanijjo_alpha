@@ -4,7 +4,14 @@ import React from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import DiscountIcon from "@mui/icons-material/Discount";
+import { useRouter } from "next/navigation";
+
 const Header = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/registration");
+  };
   return (
     <AppBar position="static" color="transparent" elevation={0}>
       <Toolbar className="flex justify-between items-center relative">
@@ -33,8 +40,16 @@ const Header = () => {
         </div>
 
         {/* Right: CTA Button */}
-        <Button variant="contained" color="primary">
-          Get early access
+        {/* <Button variant="contained" color="primary">
+          Try it free
+        </Button> */}
+        <Button
+          onClick={handleClick}
+          variant="contained"
+          size="large"
+          className="bg-gradient-to-r animate-pulse from-pink-500 to-yellow-500 hover:from-yellow-500 hover:to-pink-500 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
+        >
+          🚀 Try it Free
         </Button>
       </Toolbar>
     </AppBar>
