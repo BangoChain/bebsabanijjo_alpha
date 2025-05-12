@@ -81,11 +81,19 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { jwtDecode } from "jwt-decode";
 
 const schema = z.object({
-  email: z.string().email("Invalid email"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  username: z.string().min(6, "Username is required"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
 });
+
+type JwtPayload = {
+  userId: string; // adjust based on your token's structure
+  username: string;
+  // add other fields as needed
+};
 
 type FormData = z.infer<typeof schema>;
 
@@ -98,16 +106,29 @@ const HeroSection = () => {
     resolver: zodResolver(schema),
   });
 
+  const router = useRouter();
+
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/login", data);
-      localStorage.setItem("token", res.data.token);
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+        data
+      );
+      console.log("token:");
+
+      const token = res.data.accessToken;
+      console.log(token);
+      localStorage.setItem("token", token);
+
+      const decoded: JwtPayload = jwtDecode(token);
+      console.log("Decoded token:", decoded);
+
       toast.success("Login successful");
+      router.push("/dashboard");
     } catch (err: unknown) {
       toast.error("Login failed");
     }
   };
-
   return (
     <section className="flex flex-col md:flex-row items-center justify-between py-32 px-8 md:px-24 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
       {/* Left Side Content */}
@@ -148,7 +169,7 @@ const HeroSection = () => {
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <TextField
+            {/* <TextField
               label="Email"
               type="email"
               variant="outlined"
@@ -156,7 +177,17 @@ const HeroSection = () => {
               {...register("email")}
               error={!!errors.email}
               helperText={errors.email?.message}
+            /> */}
+            <TextField
+              label="Username"
+              type="text"
+              variant="outlined"
+              fullWidth
+              {...register("username")}
+              error={!!errors.username}
+              helperText={errors.username?.message}
             />
+
             <TextField
               label="Password"
               type="password"
