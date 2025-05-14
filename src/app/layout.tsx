@@ -55,11 +55,34 @@
 //   );
 // }
 
-import { ThemeProvider } from "@/providers/ThemeProvider.tsx";
+// import { ThemeProvider } from "@/providers/ThemeProvider.tsx";
+// import "./globals.css";
+// import { Toaster } from "sonner";
+// import { Provider } from "react-redux";
+// import { store } from "@/store";
+// // import { DefaultSeo } from "next-seo";
+// // import SEO from "@/seo/next-seo.config";
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <Provider store={store}>
+//           <ThemeProvider>
+//             {children}
+//             <Toaster position="bottom-left" />
+//           </ThemeProvider>
+//         </Provider>
+//       </body>
+//     </html>
+//   );
+// }
 import "./globals.css";
-import { Toaster } from "sonner";
-// import { DefaultSeo } from "next-seo";
-// import SEO from "@/seo/next-seo.config";
+import { AppProviders } from "./providers";
 
 export default function RootLayout({
   children,
@@ -69,11 +92,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
-          {/* <DefaultSeo {...SEO} /> */}
-          {children}
-          <Toaster position="bottom-left" />
-        </ThemeProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );
