@@ -1,53 +1,68 @@
 "use client";
 
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 import DiscountIcon from "@mui/icons-material/Discount";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
   const router = useRouter();
-
+  const theme = useTheme();
+  //const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  // Add noSsr: true here to avoid hydration mismatch
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true });
   const handleClick = () => {
     router.push("/registration");
   };
+
   return (
     <AppBar position="static" color="transparent" elevation={0}>
-      <Toolbar className="flex justify-between items-center relative">
+      <Toolbar className="flex justify-between items-center relative px-4 md:px-8">
         {/* Left: Logo and Title */}
-        <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           <Image
             src="/images/bebsabanijjo22.PNG"
             alt="Logo"
             width={50}
             height={50}
           />
-          <Typography variant="h6" className="text-primary font-bold">
-            ব্যবসা বাণিজ্য
-          </Typography>
+          {!isMobile && (
+            <Typography variant="h6" className="text-primary font-bold">
+              ব্যবসা বাণিজ্য
+            </Typography>
+          )}
         </div>
 
-        {/* Center: SALE Section */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2">
-          <DiscountIcon />
-          <span className="bg-green-500 text-white font-bold text-sm px-3 py-1 rounded-full">
-            SALE
-          </span>
-          <Typography variant="body2">
-            Buy now and <strong>save 50% off today</strong>
-          </Typography>
-        </div>
+        {/* Center: SALE Section - Hide on Mobile */}
+        {!isMobile && (
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+            <DiscountIcon />
+            <span className="bg-green-500 text-white font-bold text-sm px-3 py-1 rounded-full">
+              SALE
+            </span>
+            <Typography variant="body2">
+              Buy now and <strong>save 50% off today</strong>
+            </Typography>
+          </div>
+        )}
 
         {/* Right: CTA Button */}
-        {/* <Button variant="contained" color="primary">
-          Try it free
-        </Button> */}
         <Button
           onClick={handleClick}
           variant="contained"
           size="large"
-          className="bg-gradient-to-r animate-pulse from-pink-500 to-yellow-500 hover:from-yellow-500 hover:to-pink-500 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
+          className="bg-gradient-to-r animate-pulse from-pink-500 to-yellow-500 hover:from-yellow-500 hover:to-pink-500 text-white font-bold px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
         >
           🚀 Try it Free
         </Button>
@@ -57,6 +72,63 @@ const Header = () => {
 };
 
 export default Header;
+
+// "use client";
+
+// import React from "react";
+// import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+// import Image from "next/image";
+// import DiscountIcon from "@mui/icons-material/Discount";
+// import { useRouter } from "next/navigation";
+
+// const Header = () => {
+//   const router = useRouter();
+
+//   const handleClick = () => {
+//     router.push("/registration");
+//   };
+//   return (
+//     <AppBar position="static" color="transparent" elevation={0}>
+//       <Toolbar className="flex justify-between items-center relative">
+//         {/* Left: Logo and Title */}
+//         <div className="flex items-center gap-2">
+//           <Image
+//             src="/images/bebsabanijjo22.PNG"
+//             alt="Logo"
+//             width={50}
+//             height={50}
+//           />
+//           <Typography variant="h6" className="text-primary font-bold">
+//             ব্যবসা বাণিজ্য
+//           </Typography>
+//         </div>
+
+//         {/* Center: SALE Section */}
+//         <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+//           <DiscountIcon />
+//           <span className="bg-green-500 text-white font-bold text-sm px-3 py-1 rounded-full">
+//             SALE
+//           </span>
+//           <Typography variant="body2">
+//             Buy now and <strong>save 50% off today</strong>
+//           </Typography>
+//         </div>
+
+//         {/* Right: CTA Button */}
+//         <Button
+//           onClick={handleClick}
+//           variant="contained"
+//           size="large"
+//           className="bg-gradient-to-r animate-pulse from-pink-500 to-yellow-500 hover:from-yellow-500 hover:to-pink-500 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
+//         >
+//           🚀 Try it Free
+//         </Button>
+//       </Toolbar>
+//     </AppBar>
+//   );
+// };
+
+// export default Header;
 
 // "use client";
 
