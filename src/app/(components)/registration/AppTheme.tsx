@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 
-const AppTheme = () => {
-  return <div>AppTheme</div>;
-};
+// const AppTheme = () => {
+//   return <div>AppTheme</div>;
+// };
 
-export default AppTheme;
+// export default AppTheme;
