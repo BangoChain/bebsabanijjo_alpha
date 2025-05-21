@@ -1,4 +1,4 @@
-// countries.ts
+// for countries.ts
 export const countries = [
   "Afghanistan",
   "Albania",

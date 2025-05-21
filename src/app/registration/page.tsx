@@ -407,30 +407,286 @@
 // };
 
 // export default RegistrationPage;
+// import SignUpCard from "@/app/(components)/registration/SignUpCard";
+// import Contents from "@/app/(components)/registration/Content";
+//---------------------------   main part  -----------------------------------------
 
+// "use client";
+// import * as React from "react";
+// import CssBaseline from "@mui/material/CssBaseline";
+// import Stack from "@mui/material/Stack";
+// import Header from "@/app/(components)/commons/Header";
+// import SignUpCard from "@/app/(components)/auth/SignUpCard";
+// import SignUpContent from "@/app/(components)/auth/SignUpContent";
+// import Footer from "@/app/(components)/commons/Footer";
+// import RegistrationPage from "@/app/(components)/auth/RegistrationPage";
+
+// const Page = () => {
+//   return (
+//     <>
+//       <Header />
+//       <CssBaseline />
+//       <RegistrationPage />
+//       <Stack
+//         direction="column"
+//         component="main"
+//         sx={{
+//           justifyContent: "center",
+//           minHeight: "100vh",
+//           position: "relative",
+//           px: 1, // 👈 Minimal horizontal padding
+//           "&::before": {
+//             content: '""',
+//             display: "block",
+//             position: "absolute",
+//             zIndex: -1,
+//             inset: 0,
+//             backgroundImage:
+//               "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
+//             backgroundRepeat: "no-repeat",
+//           },
+//         }}
+//       >
+//         <Stack
+//           direction={{ xs: "column-reverse", md: "row" }}
+//           justifyContent="center"
+//           gap={{ xs: 4, sm: 8 }}
+//           mx="auto"
+//           py={4}
+//           width="100%"
+//           maxWidth="1200px" // 👈 Optional: limit max width on large screens
+//           px={1} // 👈 Minimal side padding inside the content area
+//         >
+//           <SignUpContent />
+//           <SignUpCard />
+//         </Stack>
+//       </Stack>
+
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default Page;
+
+// 1. RegistrationPage.tsx
+// "use client";
+// import React, { useState } from "react";
+// import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
+// import CompanyInfoForm, {
+//   CompanyFormData,
+// } from "@/app/(components)/auth/CompanyInfoForm";
+// import SignUpCard from "@/app/(components)/auth/SignUpCard";
+
+// const steps = ["Company Info", "User Info"];
+
+// const RegistrationPage = () => {
+//   const [step, setStep] = useState(0);
+//   const [companyData, setCompanyData] = useState<CompanyFormData | null>(null);
+
+//   const handleNext = (data: CompanyFormData) => {
+//     setCompanyData(data);
+//     setStep(1);
+//   };
+
+//   const handleBack = () => {
+//     setStep(0);
+//   };
+
+//   return (
+//     <Box py={4} px={2}>
+//       <Stepper activeStep={step} alternativeLabel sx={{ mb: 4 }}>
+//         {steps.map((label) => (
+//           <Step key={label}>
+//             <StepLabel>{label}</StepLabel>
+//           </Step>
+//         ))}
+//       </Stepper>
+
+//       {step === 0 && <CompanyInfoForm onNext={handleNext} />}
+
+//       {step === 1 && (
+//         <>
+//           <SignUpCard companyData={companyData} />
+//           <Box mt={2} textAlign="center">
+//             <Button onClick={handleBack}>← Back to Company Info</Button>
+//           </Box>
+//         </>
+//       )}
+//     </Box>
+//   );
+// };
+
+// export default RegistrationPage;
+
+// 2nd main
+// "use client";
+// import * as React from "react";
+// import { useState } from "react";
+// import CssBaseline from "@mui/material/CssBaseline";
+// import Stack from "@mui/material/Stack";
+// import Box from "@mui/material/Box";
+// import Button from "@mui/material/Button";
+
+// import Header from "@/app/(components)/commons/Header";
+// import Footer from "@/app/(components)/commons/Footer";
+// import CompanyInfoForm from "@/app/(components)/auth/CompanyInfoForm";
+// import SignUpContent from "@/app/(components)/auth/SignUpContent";
+// import SignUpCard from "@/app/(components)/auth/SignUpCard";
+
+// import { CompanyFormData } from "@/app/(components)/auth/types";
+// import { CompanyFormState } from "@/app/(components)/auth/types";
+
+// const Page = () => {
+//   const [step, setStep] = useState(0);
+//  // const [companyData, setCompanyData] = useState<CompanyFormData | null>(null);
+//   const [companyData, setCompanyData] = useState<CompanyFormState>({
+//   name: "",
+//   logo: "",
+//   address: "",
+//   city: "",
+//   state: "",
+//   country: "",
+//   phone: "",
+//   email: "",
+//   logoFile: null,
+//   logoPreview: null,
+//   uploaded: false,
+// });
+
+//   const handleNext = (data: CompanyFormData) => {
+//     setCompanyData(data);
+//     setStep(1);
+//   };
+
+//   const handleBack = () => {
+//     setStep(0);
+//   };
+
+//   return (
+//     <>
+//       <Header />
+//       <CssBaseline />
+//       <Stack
+//         bgcolor="#f3f2ef"
+//         direction="column"
+//         component="main"
+//         sx={{
+//           justifyContent: "center",
+//           minHeight: "100vh",
+//           position: "relative",
+//           px: 1,
+//           "&::before": {
+//             content: '""',
+//             display: "block",
+//             position: "absolute",
+//             zIndex: -1,
+//             inset: 0,
+//             backgroundImage:
+//               "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
+//             backgroundRepeat: "no-repeat",
+//           },
+//         }}
+//       >
+//         <Stack
+//           direction={{ xs: "column", md: "row" }}
+//           justifyContent="center"
+//           gap={{ xs: 4, sm: 8 }}
+//           mx="auto"
+//           py={4}
+//           width="100%"
+//           maxWidth="1200px"
+//           px={1}
+//         >
+//           <SignUpContent />
+
+//           <Box width="100%" maxWidth={450} mx="auto">
+//             {step === 0 && <CompanyInfoForm onNext={handleNext} />}
+//             {step === 1 && (
+//               <>
+//                 <SignUpCard companyData={companyData} />
+//                 <Box mt={2} textAlign="center">
+//                   <Button onClick={handleBack}>← Back to Company Info</Button>
+//                 </Box>
+//               </>
+//             )}
+//           </Box>
+//         </Stack>
+//       </Stack>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default Page;
+
+//3rd main
 "use client";
 import * as React from "react";
+import { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+
 import Header from "@/app/(components)/commons/Header";
-import SignUpCard from "@/app/(components)/registration/SignUpCard";
-import Contents from "@/app/(components)/registration/Content";
 import Footer from "@/app/(components)/commons/Footer";
+import CompanyInfoForm from "@/app/(components)/auth/CompanyInfoForm";
+import SignUpContent from "@/app/(components)/auth/SignUpContent";
+import SignUpCard from "@/app/(components)/auth/SignUpCard";
+import ThankYou from "@/app/(components)/auth/ThankYou";
+
+// import {
+//   CompanyFormData,
+//   CompanyFormState,
+// } from "@/app/(components)/auth/types";
+import { CompanyFormData, CompanyFormState } from "@/types/auth";
 
 const Page = () => {
+  const [step, setStep] = useState(0);
+  const [credentials, setCredentials] = React.useState<{
+    username: string;
+    password: string;
+  } | null>(null);
+
+  const [companyData, setCompanyData] = useState<CompanyFormState>({
+    name: "",
+    logo: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    phone: "",
+    email: "",
+    logoFile: null,
+    logoPreview: null,
+    uploaded: false,
+    uploadError: null,
+    uploadLoading: false,
+  });
+
+  const handleNext = (data: CompanyFormData) => {
+    setCompanyData((prev) => ({ ...prev, ...data }));
+    setStep(1);
+  };
+
+  const handleBack = () => {
+    setStep(0);
+  };
+
   return (
     <>
       <Header />
       <CssBaseline />
-
       <Stack
+        bgcolor="#f3f2ef"
         direction="column"
         component="main"
         sx={{
           justifyContent: "center",
           minHeight: "100vh",
           position: "relative",
-          px: 1, // 👈 Minimal horizontal padding
+          px: 1,
           "&::before": {
             content: '""',
             display: "block",
@@ -444,20 +700,63 @@ const Page = () => {
         }}
       >
         <Stack
-          direction={{ xs: "column-reverse", md: "row" }}
+          direction={{ xs: "column", md: "row" }}
           justifyContent="center"
           gap={{ xs: 4, sm: 8 }}
           mx="auto"
           py={4}
           width="100%"
-          maxWidth="1200px" // 👈 Optional: limit max width on large screens
-          px={1} // 👈 Minimal side padding inside the content area
+          maxWidth="1200px"
+          px={1}
         >
-          <Contents />
-          <SignUpCard />
+          <SignUpContent />
+
+          <Box width="100%" maxWidth={450} mx="auto">
+            {step === 0 && (
+              <CompanyInfoForm
+                formData={companyData}
+                setFormData={setCompanyData}
+                onNext={handleNext}
+              />
+            )}
+            {/* {step === 1 && (
+              <>
+                <SignUpCard companyData={companyData} />
+                <Box mt={2} textAlign="center">
+                  <Button onClick={handleBack}>← Back to Company Info</Button>
+                </Box>
+              </>
+            )} */}
+            {step === 1 && (
+              <>
+                {/* <SignUpCard
+                  companyData={companyData}
+                  onSuccess={() => setStep(2)}
+                /> */}
+                <SignUpCard
+                  companyData={companyData}
+                  onSuccess={(username, password) => {
+                    setCredentials({ username, password });
+                    setStep(2);
+                  }}
+                />
+
+                <Box mt={2} textAlign="center">
+                  <Button onClick={handleBack}>← Back to Company Info</Button>
+                </Box>
+              </>
+            )}
+
+            {/* {step === 2 && <ThankYou />} */}
+            {step === 2 && (
+              <ThankYou
+                username={credentials?.username}
+                password={credentials?.password}
+              />
+            )}
+          </Box>
         </Stack>
       </Stack>
-
       <Footer />
     </>
   );

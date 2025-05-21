@@ -15,7 +15,7 @@ export function RegistrationIcon() {
         fontSize="40"
         fill="#1976d2"
       >
-        How to Registration
+        How to Registration :
       </text>
     </SvgIcon>
   );
