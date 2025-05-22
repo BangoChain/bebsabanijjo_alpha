@@ -14,3 +14,15 @@ export interface AuthState {
   loading: boolean;
   error: string | null;
 }
+
+// Add these for API request/response types:
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+}

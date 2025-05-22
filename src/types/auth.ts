@@ -1,44 +1,5 @@
-// // @/app/(components)/auth/types.ts
-// import { z } from "zod";
+// @/app/(components)/auth/types.ts
 
-// // Company Info Schema & Type
-// export const companySchema = z.object({
-//   name: z.string().min(1, "Company name is required"),
-//   logo: z.string().url("Logo must be a valid URL"),
-//   address: z.string().min(1, "Address is required"),
-//   city: z.string().min(1, "City is required"),
-//   state: z.string().min(1, "State is required"),
-//   country: z.string().min(1, "Country is required"),
-//   phone: z.string().min(1, "Phone is required"),
-//   email: z.string().email("Invalid email address"),
-// });
-
-// export type CompanyFormData = z.infer<typeof companySchema>;
-
-// export type CompanyFormState = CompanyFormData & {
-//   logoFile?: File | null;
-//   logoPreview?: string | null;
-//   uploaded?: boolean;
-//   uploadError?: string | null;
-//   uploadLoading?: boolean;
-// };
-
-// // User Info Schema & Type (for Step 2)
-// export const userSchema = z.object({
-//   firstName: z.string().min(1, "First name is required"),
-//   lastName: z.string().min(1, "Last name is required"),
-//   email: z.string().email("Invalid email address"),
-//   userName: z.string().min(1, "Username is required"),
-//   phoneNumber: z.string().min(1, "Phone number is required"),
-//   // image: z.string().url("Image must be a valid URL"),
-//   acceptTerms: z.literal(true, {
-//     errorMap: () => ({ message: "You must accept the terms and conditions" }),
-//   }),
-// });
-
-// export type UserFormData = z.infer<typeof userSchema>;
-
-// ------------------ real one
 import { z } from "zod";
 
 /** ------------------------------
