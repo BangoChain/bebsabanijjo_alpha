@@ -86,7 +86,6 @@ import "./globals.css";
 import { AppProviders } from "./providers";
 import Head from "next/head";
 
-//    <link rel="icon" type="image/png" href="/images/ArtNBud.png" />
 // Inside your component
 <Head>
   <link rel="icon" href="/images/bebsabanijjo22.PNG" />
