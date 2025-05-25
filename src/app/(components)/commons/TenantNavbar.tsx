@@ -368,7 +368,7 @@
 // ---- --------------------------------------------------------------- 4th
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setIsSidebarCollapsed } from "@/features/global/globalSlice";
 import { Bell, Menu } from "lucide-react";
@@ -425,6 +425,24 @@ const TenantNavbar = () => {
 
   // avatar URL example (you can add user.avatar if available)
   const avatarUrl = "/images/favicon.ico";
+  const [currentTime, setCurrentTime] = useState<string>("");
+
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      const formatted = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      setCurrentTime(formatted);
+    };
+
+    updateClock(); // initial call
+    const interval = setInterval(updateClock, 1000);
+
+    return () => clearInterval(interval); // cleanup
+  }, []);
 
   return (
     <div className="flex justify-between items-center w-full px-4 py-2 shadow-sm bg-white">
@@ -452,7 +470,18 @@ const TenantNavbar = () => {
           <span className="text-blue-600">{tenantName}</span>
           <span className="text-gray-400 font-bold">×</span>
           <span className="text-gray-800">Bebsa Banijjo</span>
+          <span className="ml-4 text-sm font-mono text-gray-500">
+            {currentTime}
+          </span>
         </div>
+        {/* <div className="flex items-center space-x-2 text-sm md:text-base font-semibold text-gray-700">
+          <span className="text-blue-600">{tenantName}</span>
+          <span className="text-gray-400 font-bold">×</span>
+          <span className="text-gray-800">Bebsa Banijjo</span>
+          <span className="ml-4 text-sm font-mono text-gray-500">
+            {currentTime}
+          </span>
+        </div> */}
       </div>
 
       {/* RIGHT */}
