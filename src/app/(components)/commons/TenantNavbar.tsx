@@ -425,23 +425,67 @@ const TenantNavbar = () => {
 
   // avatar URL example (you can add user.avatar if available)
   const avatarUrl = "/images/favicon.ico";
+  //const [currentTime, setCurrentTime] = useState<string>("");
+
+  // useEffect(() => {
+  //   const updateClock = () => {
+  //     const now = new Date();
+  //     const formatted = now.toLocaleTimeString([], {
+  //       hour: "2-digit",
+  //       minute: "2-digit",
+  //       second: "2-digit",
+  //     });
+  //     setCurrentTime(formatted);
+  //   };
+
+  //   updateClock(); // initial call
+  //   const interval = setInterval(updateClock, 1000);
+
+  //   return () => clearInterval(interval); // cleanup
+  // }, []);
   const [currentTime, setCurrentTime] = useState<string>("");
 
   useEffect(() => {
+    // const updateClock = () => {
+    //   const now = new Date();
+
+    //   let hours = now.getHours();
+    //   const minutes = now.getMinutes().toString().padStart(2, "0");
+    //   const seconds = now.getSeconds().toString().padStart(2, "0");
+    //   const isAM = hours < 12;
+    //   const amPm = isAM ? "AM" : "PM";
+
+    //   hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+    //   const hoursStr = hours.toString().padStart(2, "0");
+
+    //   const separator = now.getSeconds() % 2 === 0 ? ":" : " "; // Blinking colon
+
+    //   const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
+    //   setCurrentTime(formatted);
+    // };
     const updateClock = () => {
       const now = new Date();
-      const formatted = now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
+
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      const seconds = now.getSeconds().toString().padStart(2, "0");
+
+      const isAM = hours < 12;
+      // const amPm = isAM ? "AM" : "PM";
+      const amPm = "PM";
+
+      hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+      const hoursStr = hours.toString().padStart(2, "0");
+
+      const separator = now.getSeconds() % 2 === 0 ? ":" : " ";
+
+      const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
       setCurrentTime(formatted);
     };
 
-    updateClock(); // initial call
+    updateClock();
     const interval = setInterval(updateClock, 1000);
-
-    return () => clearInterval(interval); // cleanup
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -471,6 +515,16 @@ const TenantNavbar = () => {
           <span className="text-gray-400 font-bold">×</span>
           <span className="text-gray-800">Bebsa Banijjo</span>
           <span className="ml-4 text-sm font-mono text-gray-500">
+            {currentTime}
+          </span>
+          <span
+            className="ml-4 px-2 py-1 font-mono text-sm md:text-base rounded bg-black text-green-400 tracking-widest shadow-inner"
+            style={{
+              fontFamily: "Digital-7, monospace",
+              fontSize: "1rem",
+              letterSpacing: "0.1rem",
+            }}
+          >
             {currentTime}
           </span>
         </div>
