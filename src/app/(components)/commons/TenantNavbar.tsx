@@ -437,7 +437,7 @@ const TenantNavbar = () => {
         >
           <Menu className="w-5 h-5" />
         </button>
-        <div className="relative">
+        {/* <div className="relative">
           <input
             type="search"
             placeholder="Search groups or products"
@@ -447,7 +447,7 @@ const TenantNavbar = () => {
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <Bell size={16} className="text-gray-500" />
           </div>
-        </div>
+        </div> */}
         <div className="flex items-center space-x-2 text-sm md:text-base font-semibold text-gray-700">
           <span className="text-blue-600">{tenantName}</span>
           <span className="text-gray-400 font-bold">×</span>
