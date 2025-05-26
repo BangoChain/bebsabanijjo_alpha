@@ -471,13 +471,13 @@ const TenantNavbar = () => {
       const seconds = now.getSeconds().toString().padStart(2, "0");
 
       const isAM = hours < 12;
-      // const amPm = isAM ? "AM" : "PM";
-      const amPm = "PM";
+      const amPm = isAM ? "AM" : "PM";
+      // const amPm = "PM";
 
       hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
       const hoursStr = hours.toString().padStart(2, "0");
 
-      const separator = now.getSeconds() % 2 === 0 ? ":" : " ";
+      const separator = ":";
 
       const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
       setCurrentTime(formatted);
