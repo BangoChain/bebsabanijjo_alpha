@@ -32,8 +32,8 @@ const SidebarLink = ({ href, icon, label, isCollapsed }: SidebarLinkProps) => {
   return (
     <Link href={href}>
       <div
-        className={`cursor-pointer flex items-center ${
-          isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
+        className={`cursor-pointer flex items-center  ${
+          isCollapsed ? "justify-center py-4  " : "justify-start px-8 py-4"
         }
         hover:text-blue-500 hover:bg-blue-100 gap-3 transition-colors ${
           isActive ? "bg-blue-200 text-white" : ""
@@ -43,6 +43,18 @@ const SidebarLink = ({ href, icon, label, isCollapsed }: SidebarLinkProps) => {
 
         {!isCollapsed && (
           <span className="font-medium text-gray-700">{label}</span>
+        )}
+        {/* Tooltip only when collapsed */}
+        {isCollapsed && (
+          // <span className="absolute left-full bg-black text-amber-300 text-xs rounded px-2 py-1">
+          //   {label}
+          // </span>
+          <span
+            className="absolute right-full top-1/2 -translate-y-1/2 ml-3 px-2 py-1 rounded bg-black text-white text-xs whitespace-nowrap
+              opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 shadow-lg"
+          >
+            {label}
+          </span>
         )}
       </div>
     </Link>
