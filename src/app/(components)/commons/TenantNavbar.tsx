@@ -517,7 +517,7 @@ const TenantNavbar = () => {
           <span className="ml-4 text-sm font-mono text-gray-500">
             {currentTime}
           </span>
-          <span
+          {/* <span
             className="ml-4 px-2 py-1 font-mono text-sm md:text-base rounded bg-black text-green-400 tracking-widest shadow-inner"
             style={{
               fontFamily: "Digital-7, monospace",
@@ -526,7 +526,7 @@ const TenantNavbar = () => {
             }}
           >
             {currentTime}
-          </span>
+          </span> */}
         </div>
         {/* <div className="flex items-center space-x-2 text-sm md:text-base font-semibold text-gray-700">
           <span className="text-blue-600">{tenantName}</span>
