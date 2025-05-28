@@ -294,6 +294,12 @@ const modules = [
     bg: "#f0fdf4",
     path: "/monitor",
   },
+  {
+    name: "Syed Emon",
+    icon: <BarChartIcon fontSize="large" />,
+    bg: "#f0fdf4",
+    path: "/tenant/system",
+  },
 ];
 
 const TenantDashboardPage = () => {

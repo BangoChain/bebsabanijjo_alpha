@@ -13,94 +13,96 @@
 //     </>
 //   );
 // }
-"use client";
-
-import React from "react";
-import TenantNavbar from "@/app/(components)/commons/TenantNavbar";
-import TenantSidebar from "@/app/(components)/commons/TenantSidebar";
-//import SecondarySidebar from "@/app/(components)/commons/TenantSidebar";
-//import AuthProvider from "@/app/(components)/auth/AuthProvider";
-import { useAppSelector } from "@/store/hooks";
-
-export default function TenantLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const isSidebarCollapsed = useAppSelector(
-    (state) => state.global.isSidebarCollapsed
-  );
-
-  return (
-    //<AuthProvider>
-    <div className="flex min-h-screen">
-      <TenantSidebar />
-      <main
-        className={`flex flex-col w-full transition-all ${
-          isSidebarCollapsed ? "md:pl-24" : "md:pl-72"
-        }`}
-      >
-        <TenantNavbar />
-        {children}
-      </main>
-    </div>
-    //</AuthProvider>
-  );
-}
-
-//------------------------------- use with vs code
-
 // "use client";
 
-// import React, { useEffect } from "react";
+// import React from "react";
 // import TenantNavbar from "@/app/(components)/commons/TenantNavbar";
 // import TenantSidebar from "@/app/(components)/commons/TenantSidebar";
-// import SecondarySidebar from "@/app/(components)/commons/SecondarySidebar";
-// import AuthProvider from "@/app/(components)/auth/AuthProvider";
-// import { useAppDispatch, useAppSelector } from "@/store/hooks";
-// import { setIsSidebarCollapsed } from "@/features/global/globalSlice";
-// import { usePathname } from "next/navigation";
+// //import SecondarySidebar from "@/app/(components)/commons/TenantSidebar";
+// //import AuthProvider from "@/app/(components)/auth/AuthProvider";
+// import { useAppSelector } from "@/store/hooks";
 
 // export default function TenantLayout({
 //   children,
 // }: {
 //   children: React.ReactNode;
 // }) {
-//   const dispatch = useAppDispatch();
-//   const pathname = usePathname();
 //   const isSidebarCollapsed = useAppSelector(
 //     (state) => state.global.isSidebarCollapsed
 //   );
 
-//   const isHomePage = pathname === "/tenant";
-
-//   // Set initial sidebar state based on route
-//   useEffect(() => {
-//     dispatch(setIsSidebarCollapsed(!isHomePage)); // collapsed for all except home
-//   }, [pathname, dispatch, isHomePage]);
-
 //   return (
-//     <AuthProvider>
-//       <div className="flex min-h-screen">
-//         {/* Main Sidebar */}
-//         <TenantSidebar />
-
-//         {/* Secondary Sidebar for non-home pages */}
-//         {!isHomePage && <SecondarySidebar />}
-
-//         {/* Main Content */}
-//         <main
-//           className={`flex flex-col w-full transition-all ${
-//             isSidebarCollapsed ? "md:pl-24" : "md:pl-72"
-//           }`}
-//         >
-//           <TenantNavbar />
-//           {children}
-//         </main>
-//       </div>
-//     </AuthProvider>
+//     //<AuthProvider>
+//     <div className="flex min-h-screen">
+//       <TenantSidebar />
+//       <main
+//         className={`flex flex-col w-full transition-all ${
+//           isSidebarCollapsed ? "md:pl-24" : "md:pl-72"
+//         }`}
+//       >
+//         <TenantNavbar />
+//         {children}
+//       </main>
+//     </div>
+//     //</AuthProvider>
 //   );
-// }
+//}
+
+// for vs code
+
+"use client";
+
+import React from "react";
+import { usePathname } from "next/navigation";
+import TenantNavbar from "@/app/(components)/commons/TenantNavbar";
+import TenantSidebar from "@/app/(components)/commons/TenantSidebar";
+import SystemSidebar from "@/app/(components)/commons/submenus/SystemSidebar";
+import InvoiceSidebar from "@/app/(components)/commons/submenus/InvoiceSidebar";
+import HomeSidebar from "@/app/(components)/commons/submenus/HomeSidebar"; // <-- import it
+
+export default function TenantLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+
+  const isHomePath = pathname === "/tenant";
+  const isSystemPath = pathname.startsWith("/tenant/system");
+  const isInvoicePath = pathname.startsWith("/tenant/invoice");
+
+  return (
+    <div className="flex h-screen w-full">
+      {/* MAIN SIDEBAR - Always shows */}
+      <TenantSidebar />
+
+      {/* SECONDARY SIDEBARS */}
+      {isHomePath && (
+        <div className="border-r bg-gray-50 w-56">
+          <HomeSidebar />
+        </div>
+      )}
+      {isSystemPath && (
+        <div className="border-r bg-gray-50 w-56">
+          <SystemSidebar />
+        </div>
+      )}
+      {isInvoicePath && (
+        <div className="border-r bg-gray-50 w-56">
+          <InvoiceSidebar />
+        </div>
+      )}
+
+      {/* MAIN CONTENT AREA */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <TenantNavbar />
+        <main className="p-4 overflow-y-auto">{children}</main>
+      </div>
+    </div>
+  );
+}
+
+//------------------------------- use with vs code
 
 // "use client";
 

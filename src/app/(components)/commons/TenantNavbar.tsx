@@ -416,73 +416,28 @@ const TenantNavbar = () => {
   };
 
   // fallback user display if user data is missing
-  // const displayName = user?.userName || "Guest User";
-  // const roleName = user?.role?.name || "User";
-  // const tenantName = user?.tenantName || "Bebsa Banijjo";
   const displayName = user?.user?.userName || "Guest User";
   const roleName = user?.role?.name || "User";
   const tenantName = user?.tenant?.name || "Bebsa Banijjo";
 
   // avatar URL example (you can add user.avatar if available)
   const avatarUrl = "/images/favicon.ico";
-  //const [currentTime, setCurrentTime] = useState<string>("");
-
-  // useEffect(() => {
-  //   const updateClock = () => {
-  //     const now = new Date();
-  //     const formatted = now.toLocaleTimeString([], {
-  //       hour: "2-digit",
-  //       minute: "2-digit",
-  //       second: "2-digit",
-  //     });
-  //     setCurrentTime(formatted);
-  //   };
-
-  //   updateClock(); // initial call
-  //   const interval = setInterval(updateClock, 1000);
-
-  //   return () => clearInterval(interval); // cleanup
-  // }, []);
   const [currentTime, setCurrentTime] = useState<string>("");
 
   useEffect(() => {
-    // const updateClock = () => {
-    //   const now = new Date();
-
-    //   let hours = now.getHours();
-    //   const minutes = now.getMinutes().toString().padStart(2, "0");
-    //   const seconds = now.getSeconds().toString().padStart(2, "0");
-    //   const isAM = hours < 12;
-    //   const amPm = isAM ? "AM" : "PM";
-
-    //   hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
-    //   const hoursStr = hours.toString().padStart(2, "0");
-
-    //   const separator = now.getSeconds() % 2 === 0 ? ":" : " "; // Blinking colon
-
-    //   const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
-    //   setCurrentTime(formatted);
-    // };
     const updateClock = () => {
       const now = new Date();
-
       let hours = now.getHours();
       const minutes = now.getMinutes().toString().padStart(2, "0");
       const seconds = now.getSeconds().toString().padStart(2, "0");
-
       const isAM = hours < 12;
       const amPm = isAM ? "AM" : "PM";
-      // const amPm = "PM";
-
       hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
       const hoursStr = hours.toString().padStart(2, "0");
-
       const separator = ":";
-
       const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
       setCurrentTime(formatted);
     };
-
     updateClock();
     const interval = setInterval(updateClock, 1000);
     return () => clearInterval(interval);
@@ -499,17 +454,7 @@ const TenantNavbar = () => {
         >
           <Menu className="w-5 h-5" />
         </button>
-        {/* <div className="relative">
-          <input
-            type="search"
-            placeholder="Search groups or products"
-            className="pl-10 pr-4 py-2 w-48 md:w-64 border border-gray-300 bg-white rounded-md text-sm focus:outline-none focus:ring focus:border-blue-300"
-          />
 
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-            <Bell size={16} className="text-gray-500" />
-          </div>
-        </div> */}
         <div className="flex items-center space-x-2 text-sm md:text-base font-semibold text-gray-700">
           <span className="text-blue-600">{tenantName}</span>
           <span className="text-gray-400 font-bold">×</span>
@@ -517,25 +462,7 @@ const TenantNavbar = () => {
           <span className="ml-4 text-sm font-mono text-gray-500">
             {currentTime}
           </span>
-          {/* <span
-            className="ml-4 px-2 py-1 font-mono text-sm md:text-base rounded bg-black text-green-400 tracking-widest shadow-inner"
-            style={{
-              fontFamily: "Digital-7, monospace",
-              fontSize: "1rem",
-              letterSpacing: "0.1rem",
-            }}
-          >
-            {currentTime}
-          </span> */}
         </div>
-        {/* <div className="flex items-center space-x-2 text-sm md:text-base font-semibold text-gray-700">
-          <span className="text-blue-600">{tenantName}</span>
-          <span className="text-gray-400 font-bold">×</span>
-          <span className="text-gray-800">Bebsa Banijjo</span>
-          <span className="ml-4 text-sm font-mono text-gray-500">
-            {currentTime}
-          </span>
-        </div> */}
       </div>
 
       {/* RIGHT */}
