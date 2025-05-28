@@ -300,17 +300,17 @@ const TenantDashboardPage = () => {
   const [user, setUser] = useState<JwtPayload | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const token = getToken();
-    if (!token) return router.push("/");
-    try {
-      const decoded = jwtDecode<JwtPayload & { exp: number }>(token);
-      if (decoded.exp * 1000 < Date.now()) return router.push("/");
-      setUser(decoded);
-    } catch {
-      router.push("/");
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const token = getToken();
+  //   if (!token) return router.push("/");
+  //   try {
+  //     const decoded = jwtDecode<JwtPayload & { exp: number }>(token);
+  //     if (decoded.exp * 1000 < Date.now()) return router.push("/");
+  //     setUser(decoded);
+  //   } catch {
+  //     router.push("/");
+  //   }
+  // }, [router]);
 
   return (
     <Box sx={{ p: 4 }}>
