@@ -324,7 +324,7 @@ const TenantDashboardPage = () => {
         Welcome to Bebsa Banijjo, {user?.user?.userName || "Guest"}
       </Typography>
 
-      <Grid container spacing={2}>
+      {/* <Grid container spacing={2}>
         {modules.map((module, index) => (
           <Grid
             key={index}
@@ -350,6 +350,61 @@ const TenantDashboardPage = () => {
                 <CardContent sx={{ textAlign: "center" }}>
                   <Box mb={1}>{module.icon}</Box>
                   <Typography variant="subtitle1" fontWeight="500">
+                    {module.name}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </Grid>
+        ))}
+      </Grid> */}
+      <Grid container columns={{ xs: 12, sm: 12, md: 12 }} spacing={2}>
+        {modules.map((module, index) => (
+          <Grid
+            key={index}
+            sx={{ gridColumn: { xs: "span 12", sm: "span 6", md: "span 4" } }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => router.push(module.path)}
+            >
+              <Card
+                sx={{
+                  backgroundColor: module.bg,
+                  height: 130,
+                  borderRadius: 2,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  overflow: "hidden",
+                }}
+              >
+                <CardContent
+                  sx={{
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 2,
+                    height: "100%",
+                    width: "100%",
+                    "&:last-child": { paddingBottom: 2 },
+                  }}
+                >
+                  <Box mb={1}>{module.icon}</Box>
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight={500}
+                    noWrap
+                    sx={{
+                      width: "100%",
+                      textOverflow: "ellipsis",
+                      overflow: "hidden",
+                    }}
+                  >
                     {module.name}
                   </Typography>
                 </CardContent>
