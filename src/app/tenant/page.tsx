@@ -244,6 +244,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const modules = [
   {
@@ -296,7 +297,7 @@ const modules = [
   },
   {
     name: "Syed Emon",
-    icon: <BarChartIcon fontSize="large" />,
+    icon: <DirectionsCarIcon fontSize="large" />,
     bg: "#f0fdf4",
     path: "/tenant/system",
   },

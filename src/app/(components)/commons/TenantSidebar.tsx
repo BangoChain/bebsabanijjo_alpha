@@ -11,16 +11,30 @@ import {
   List,
   House,
   LucideIcon,
+  Calendar,
+  ChartNoAxesColumn,
+  Store,
+  Car,
+  // Menu,
 } from "lucide-react";
 import Image from "next/image";
 const sidebarItems: { icon: LucideIcon; href: string; label: string }[] = [
   { icon: House, href: "/tenant", label: "Home" },
-  { icon: CircleDollarSign, href: "/tenant/sales", label: "Sales" },
-  { icon: ShoppingCart, href: "/tenant/purchase", label: "Purchase" },
-  { icon: FileText, href: "/tenant/accounts", label: "Accounts" },
-  { icon: List, href: "/tenant/order", label: "Order" },
-  { icon: Users, href: "/tenant/system", label: "System" },
-  { icon: Settings, href: "/tenant/invoice", label: "Invoice" },
+  { icon: CircleDollarSign, href: "#", label: "Sales" },
+  { icon: List, href: "#", label: "Order" },
+
+  { icon: ShoppingCart, href: "#", label: "Purchase" },
+  { icon: FileText, href: "#", label: "Accounts" },
+  { icon: Users, href: "#", label: "HR & Payroll" },
+  { icon: Calendar, href: "#", label: "Reports" },
+  { icon: Settings, href: "#", label: "Administration" },
+  {
+    icon: ChartNoAxesColumn,
+    href: "#",
+    label: "Business Monitor",
+  },
+  { icon: Car, href: "/tenant/system", label: "Syed Emon" },
+  { icon: Store, href: "#", label: "MarketPlace" },
 ];
 
 const TenantSidebar = () => {

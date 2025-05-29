@@ -15,6 +15,8 @@ export default function SystemSidebar() {
 
   return (
     <div className="flex flex-col p-4 space-y-2">
+      <h2 className="font-semibold text-lg mb-2">Welcome</h2>
+      <p>This is your system admin.</p>
       {systemLinks.map(({ href, icon: Icon, label }) => {
         const isActive = pathname === href;
         return (
