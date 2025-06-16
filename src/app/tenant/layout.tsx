@@ -58,18 +58,23 @@ import TenantNavbar from "@/app/(components)/commons/TenantNavbar";
 import TenantSidebar from "@/app/(components)/commons/TenantSidebar";
 import SystemSidebar from "@/app/(components)/commons/submenus/SystemSidebar";
 import InvoiceSidebar from "@/app/(components)/commons/submenus/InvoiceSidebar";
-import HomeSidebar from "@/app/(components)/commons/submenus/HomeSidebar"; // <-- import it
-
+import HomeSidebar from "@/app/(components)/commons/submenus/HomeSidebar"; // <-- import it SalesSidebar
+import SalesSidebar from "@/app/(components)/commons/submenus/salesSidebar";
+import { useAppSelector } from "@/store/hooks";
 export default function TenantLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed
+  );
   const pathname = usePathname();
 
   const isHomePath = pathname === "/tenant";
   const isSystemPath = pathname.startsWith("/tenant/system");
   const isInvoicePath = pathname.startsWith("/tenant/invoice");
+  const isSalesPath = pathname.startsWith("/tenant/sales");
 
   return (
     <div className="flex h-screen w-full">
@@ -78,7 +83,7 @@ export default function TenantLayout({
 
       {/* SECONDARY SIDEBARS */}
       {isHomePath && (
-        <div className="border-r bg-gray-50 w-56">
+        <div className="border-r bg-gray-50">
           <HomeSidebar />
         </div>
       )}
@@ -92,12 +97,24 @@ export default function TenantLayout({
           <InvoiceSidebar />
         </div>
       )}
-
+      {isSalesPath && (
+        <div>
+          <SalesSidebar />
+        </div>
+      )}
       {/* MAIN CONTENT AREA */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      {/* <div className="flex-1 flex flex-col overflow-hidden">
         <TenantNavbar />
         <main className="p-4 overflow-y-auto">{children}</main>
-      </div>
+      </div> */}
+      <main
+        className={`flex flex-col w-full transition-all  ${
+          isSidebarCollapsed ? "md:pl-16" : "md:pl-55"
+        }`}
+      >
+        <TenantNavbar />
+        {children}
+      </main>
     </div>
   );
 }
