@@ -13,7 +13,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       <Header />
       <HeroSection />
-      <HeroSection2 />
+      {/* <HeroSection2 /> */}
       <FeaturesSection />
       <TestimonialsSection />
       <CTASection />
