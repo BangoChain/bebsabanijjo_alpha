@@ -19,7 +19,7 @@ EXPOSE 5010
 # # Run DB sync before starting the app
 # CMD ["sh", "-c", "npm run sync && npm start"]
 
-# ensure we can run entrypoint
+# ensure we can run entrypoint .
 RUN chmod +x entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
