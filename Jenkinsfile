@@ -34,13 +34,5 @@ pipeline {
       }
     }
 
-    stage('Deploy to VPS via SSH') {
-      steps {
-        script {
-          def envType = env.BRANCH_NAME == 'main' ? 'prod' : 'qa'
-          sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'bash $INFRA_PATH/deploy.sh $envType'"
-        }
-      }
-    }
   }
 }

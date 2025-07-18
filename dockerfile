@@ -1,25 +1,39 @@
-# Example Dockerfile
-FROM node:18
+# Use an official Node.js image as the base image
+FROM node:18-alpine AS builder
 
-# Set working directory
-WORKDIR /usr/src/app
+# Set the working directory inside the container
+WORKDIR /app
 
-# Copy only package.json and package-lock.json
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies (inside container)
-RUN npm install
+# Install dependencies
+RUN npm ci
 
-# Now copy the rest of your code
+# Copy the rest of the application code
 COPY . .
 
-# Expose service port (e.g., 5010 for SysAdmin Service)
-EXPOSE 5010
+# Build the Next.js app
+RUN npm run build
 
-# # Run DB sync before starting the app
-# CMD ["sh", "-c", "npm run sync && npm start"]
+# Create a new, smaller stage for running the app
+FROM node:18-alpine
 
-# ensure we can run entrypoint
-RUN chmod +x entrypoint.sh
+# Set the working directory
+WORKDIR /app
 
-ENTRYPOINT ["./entrypoint.sh"]
+# Copy only necessary files from the builder stage
+COPY --from=builder /app/public public
+COPY --from=builder /app/.next .next
+COPY --from=builder /app/next.config.ts .
+COPY --from=builder /app/package*.json ./
+
+# Install production dependencies only
+RUN npm ci --only=production
+
+# Expose the port the app runs on
+EXPOSE 3000
+EXPOSE 3100
+
+# Start the Next.js production server
+CMD ["npm", "start"]
