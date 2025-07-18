@@ -60,6 +60,7 @@ import SystemSidebar from "@/app/(components)/commons/submenus/SystemSidebar";
 import InvoiceSidebar from "@/app/(components)/commons/submenus/InvoiceSidebar";
 import HomeSidebar from "@/app/(components)/commons/submenus/HomeSidebar"; // <-- import it SalesSidebar
 import SalesSidebar from "@/app/(components)/commons/submenus/salesSidebar";
+import TestSidebar from "@/app/(components)/commons/submenus/TestSidebar";
 import { useAppSelector } from "@/store/hooks";
 export default function TenantLayout({
   children,
@@ -75,6 +76,7 @@ export default function TenantLayout({
   const isSystemPath = pathname.startsWith("/tenant/system");
   const isInvoicePath = pathname.startsWith("/tenant/invoice");
   const isSalesPath = pathname.startsWith("/tenant/sales");
+  const isTestPath = pathname.startsWith("/tenant/test");
 
   return (
     <div className="flex h-screen w-full">
@@ -100,6 +102,11 @@ export default function TenantLayout({
       {isSalesPath && (
         <div>
           <SalesSidebar />
+        </div>
+      )}
+      {isTestPath && (
+        <div>
+          <TestSidebar />
         </div>
       )}
       {/* MAIN CONTENT AREA */}
