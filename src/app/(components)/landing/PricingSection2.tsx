@@ -14,9 +14,9 @@ import {
 import { useState } from "react";
 import { motion } from "framer-motion";
 import CheckIcon from "@mui/icons-material/Check";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+// import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CampaignIcon from "@mui/icons-material/Campaign";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+// import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 
@@ -111,7 +111,7 @@ export default function PricingSection() {
     <Box py={12} bgcolor="#f9fafb">
       <Container>
         <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
-          Find a plan that's right for you
+          Find a plan that&apos;s right for you
         </Typography>
         <Typography align="center" mb={3}>
           ⭐⭐⭐⭐⭐ 6,240+ reviews Capterra
@@ -159,7 +159,7 @@ export default function PricingSection() {
 
         <Grid container spacing={4}>
           {plans.map((plan, idx) => (
-            <Grid item xs={12} md={3} key={idx}>
+            <Grid size={{ xs: 12, md: 3 }} key={idx}>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}

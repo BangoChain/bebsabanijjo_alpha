@@ -187,7 +187,7 @@ const PricingSection = () => (
       {plans.map((plan, idx) => {
         const original = plan.monthly + plan.save;
         return (
-          <Grid item xs={12} md={6} xl={3} key={idx}>
+          <Grid size={{ xs: 12, md: 6, xl: 3 }} key={idx}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

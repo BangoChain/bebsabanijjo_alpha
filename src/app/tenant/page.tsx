@@ -218,9 +218,9 @@
 // export default TenantDashboardPage;
 
 "use client";
-
-import React, { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
+import React, { useState } from "react";
+// import React, { useEffect, useState } from "react";
+// import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 // import { Box, Grid, Card, CardContent, Typography } from "@mui/material";
 // import Grid from "@mui/material/Grid";
@@ -232,7 +232,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import { motion } from "framer-motion";
-import { getToken } from "@/utils/token";
+// import { getToken } from "@/utils/token";
 import type { JwtPayload } from "@/features/auth/authTypes";
 
 // MUI icons
@@ -304,7 +304,8 @@ const modules = [
 ];
 
 const TenantDashboardPage = () => {
-  const [user, setUser] = useState<JwtPayload | null>(null);
+  const [user] = useState<JwtPayload | null>(null);
+  // const [user, setUser] = useState<JwtPayload | null>(null);
   const router = useRouter();
 
   // useEffect(() => {
