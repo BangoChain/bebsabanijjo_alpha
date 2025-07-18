@@ -15,6 +15,7 @@ import {
   ChartNoAxesColumn,
   Store,
   Car,
+  Recycle,
   // Menu,
 } from "lucide-react";
 import Image from "next/image";
@@ -23,20 +24,22 @@ import Tooltip from "@mui/material/Tooltip";
 const sidebarItems: { icon: LucideIcon; href: string; label: string }[] = [
   { icon: House, href: "/tenant", label: "Home" },
   { icon: CircleDollarSign, href: "/tenant/sales", label: "Sales" },
-  { icon: List, href: "#", label: "Order" },
+  { icon: List, href: "/tenant/sales2", label: "Order" },
 
   // { icon: ShoppingCart, href: "#", label: "Purchase" },
   // { icon: FileText, href: "#", label: "Accounts" },
   // { icon: Users, href: "#", label: "HR & Payroll" },
   // { icon: Calendar, href: "#", label: "Reports" },
   // { icon: Settings, href: "#", label: "Administration" },
-  {
-    icon: ChartNoAxesColumn,
-    href: "#",
-    label: "Business Monitor",
-  },
-  { icon: Car, href: "/tenant/system", label: "Syed Emon" },
-  { icon: Store, href: "#", label: "MarketPlace" },
+
+  // {
+  //   icon: ChartNoAxesColumn,
+  //   href: "/tenant/sales",
+  //   label: "Business Monitor",
+  // },
+  // { icon: Car, href: "/tenant/system", label: "Syed Emon" },
+  // { icon: Store, href: "/tenant/sales", label: "MarketPlace" },
+  { icon: Recycle, href: "/tenant/test", label: "Test" },
 ];
 
 const TenantSidebar = () => {
