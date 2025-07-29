@@ -736,6 +736,10 @@ const Page = () => {
                 <SignUpCard
                   companyData={companyData}
                   onSuccess={(username, password) => {
+                    console.log("🔐 Registered with credentials:", {
+                      username,
+                      password,
+                    }); // ✅ log here
                     setCredentials({ username, password });
                     setStep(2);
                   }}
