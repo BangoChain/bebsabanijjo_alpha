@@ -444,7 +444,7 @@ const TenantNavbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center w-full px-4 py-2 shadow-sm bg-white">
+    <div className="flex justify-between items-center w-full px-4 py-2 shadow-sm ">
       {/* LEFT */}
       <div className="flex items-center gap-4">
         <button
