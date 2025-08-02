@@ -115,12 +115,18 @@ export default function TenantLayout({
         <main className="p-4 overflow-y-auto">{children}</main>
       </div> */}
       <main
-        className={`flex flex-col w-full transition-all  ${
+        className={`flex flex-col flex-1 h-full transition-all  ${
           isSidebarCollapsed ? "md:pl-16" : "md:pl-55"
         }`}
       >
-        <TenantNavbar />
-        {children}
+        {/* <div className="shrink-0">
+          <TenantNavbar />
+        </div> */}
+        <div className="sticky top-0 z-50 bg-white shadow-sm">
+          <TenantNavbar />
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4">{children}</div>
       </main>
     </div>
   );

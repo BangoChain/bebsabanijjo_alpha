@@ -229,7 +229,7 @@ const SignUpCard: React.FC<Props> = ({ companyData, onSuccess }) => {
     try {
       // Step 1: Submit Company Data
       const companyResponse = await axios.post(
-        "http://localhost:3001/api/sysadmin/tenant",
+        "https://api.bebsabanijjo.com/api/sysadmin/tenant",
         companyPayload
       );
       console.log("Tenant creation response:", companyResponse.data);
@@ -275,10 +275,13 @@ const SignUpCard: React.FC<Props> = ({ companyData, onSuccess }) => {
       };
 
       //  await axios.post("http://localhost:3001/api/sysadmin/user", userPayload);
+      console.log("📦 Sending user payload:", userPayload);
+
       const userResponse = await axios.post(
-        "http://localhost:3001/api/sysadmin/user",
+        "https://api.bebsabanijjo.com/api/sysadmin/user",
         userPayload
       );
+      console.log("👾 Triggering userResponse with...", userResponse);
       const rawUserData = userResponse?.data;
       const userInnerData =
         typeof rawUserData?.data === "string"

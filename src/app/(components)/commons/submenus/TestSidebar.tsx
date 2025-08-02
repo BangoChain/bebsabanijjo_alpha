@@ -99,35 +99,35 @@ const TestSidebar = () => {
         <SidebarLink
           href="/tenant/test"
           icon={House}
-          label="Home"
+          label="Dashboard"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/tenant/test/datagrid"
+          icon={CircleDollarSign}
+          label="DataGrid"
           isCollapsed={isSidebarCollapsed}
         />
         <SidebarLink
           href="/tenant/test/home"
-          icon={CircleDollarSign}
-          label="Sales"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/tenant/test"
           icon={List}
           label="Order"
           isCollapsed={isSidebarCollapsed}
         />
         <SidebarLink
-          href="/tenant/test"
+          href="/tenant/test/home"
           icon={ShoppingCart}
           label="Purchase"
           isCollapsed={isSidebarCollapsed}
         />
         <SidebarLink
-          href="/tenant/test"
+          href="/tenant/test/home"
           icon={Store}
           label="MarketPlace"
           isCollapsed={isSidebarCollapsed}
         />
         <SidebarLink
-          href="/tenant/test"
+          href="/tenant/test/home"
           icon={Car}
           label="Syed Emon"
           isCollapsed={isSidebarCollapsed}

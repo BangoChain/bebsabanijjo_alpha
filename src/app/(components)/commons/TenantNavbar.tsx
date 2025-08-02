@@ -424,27 +424,51 @@ const TenantNavbar = () => {
   const avatarUrl = "/images/favicon.ico";
   const [currentTime, setCurrentTime] = useState<string>("");
 
+  // useEffect(() => {
+  //   const updateClock = () => {
+  //     const now = new Date();
+  //     let hours = now.getHours();
+  //     const minutes = now.getMinutes().toString().padStart(2, "0");
+  //     const seconds = now.getSeconds().toString().padStart(2, "0");
+  //     const isAM = hours < 12;
+  //     const amPm = isAM ? "AM" : "PM";
+  //     hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+  //     const hoursStr = hours.toString().padStart(2, "0");
+  //     const separator = ":";
+  //     const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
+  //     setCurrentTime(formatted);
+  //   };
+  //   updateClock();
+  //   const interval = setInterval(updateClock, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
-      let hours = now.getHours();
-      const minutes = now.getMinutes().toString().padStart(2, "0");
-      const seconds = now.getSeconds().toString().padStart(2, "0");
-      const isAM = hours < 12;
-      const amPm = isAM ? "AM" : "PM";
-      hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
-      const hoursStr = hours.toString().padStart(2, "0");
-      const separator = ":";
-      const formatted = `${hoursStr}${separator}${minutes}${separator}${seconds} ${amPm}`;
+
+      const weekday = now.toLocaleDateString("en-US", { weekday: "long" });
+      const day = now.toLocaleDateString("en-GB", { day: "2-digit" }); // "02"
+      const month = now.toLocaleDateString("en-US", { month: "long" }); // "August"
+      const year = now.getFullYear(); // 2025
+
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+
+      const formatted = `${weekday}, ${day} ${month} ${year}, ${time}`;
       setCurrentTime(formatted);
     };
+
     updateClock();
-    const interval = setInterval(updateClock, 1000);
+    const interval = setInterval(updateClock, 60000); // update every minute
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="flex justify-between items-center w-full px-4 py-2 shadow-sm bg-white">
+    <div className="flex justify-between items-center w-full px-4 py-2 shadow-sm ">
       {/* LEFT */}
       <div className="flex items-center gap-4">
         <button
