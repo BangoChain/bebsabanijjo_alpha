@@ -1,163 +1,186 @@
 "use client";
 
-import React, { useState } from "react";
 import {
-  AppBar,
-  Tabs,
-  Tab,
-  Typography,
-  Container,
-  Box,
-  Divider,
-} from "@mui/material";
+  CheckCircle,
+  Package,
+  Tag,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
 
-// Components to switch between
-import BasicTable from "@/app/(components)/Test/DataGrid/BasicTable";
-import InventoryDataGrid from "@/app/(components)/Test/DataGrid/BaseDataGrid";
-import EditableGrid from "@/app/(components)/Test/DataGrid/EditableGrid"; // optional
-import PaginatedTable from "@/app/(components)/Test/DataGrid/PaginatedTable"; // optional
+import CardExpenseSummary from "@/app/(components)/Test/Dashboard/CardExpenseSummary";
+import CardPopularProducts from "@/app/(components)/Test/Dashboard/CardPopularProducts";
+import CardPurchaseSummary from "@/app/(components)/Test/Dashboard/CardPurchaseSummary";
+import CardSalesSummary from "@/app/(components)/Test/Dashboard/CardSalesSummary";
+import StatCard from "@/app/(components)/Test/Dashboard/StatCard";
 
-type TabKey = "table" | "datagrid" | "editable" | "paginated";
-
-const tabConfig: { key: TabKey; label: string }[] = [
-  { key: "table", label: "Basic Table" },
-  { key: "datagrid", label: "DataGrid" },
-  { key: "editable", label: "Editable Grid" },
-  { key: "paginated", label: "Paginated Table" },
-];
 const Page = () => {
-  const [tabValue, setTabValue] = useState<TabKey>("table");
-
-  const handleChange = (_event: React.SyntheticEvent, newValue: TabKey) => {
-    setTabValue(newValue);
-  };
-
-  const renderComponent = () => {
-    switch (tabValue) {
-      case "table":
-        return <BasicTable />;
-      case "datagrid":
-        return <InventoryDataGrid />;
-      case "editable":
-        return <EditableGrid />;
-      case "paginated":
-        return <PaginatedTable />;
-      default:
-        return null;
-    }
-  };
   return (
-    <Box>
-      <AppBar
-        position="static"
-        color="default"
-        sx={{ borderBottom: 1, borderColor: "divider" }}
-      >
-        <Tabs
-          value={tabValue}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-        >
-          {tabConfig.map((tab) => (
-            <Tab key={tab.key} label={tab.label} value={tab.key} />
-          ))}
-        </Tabs>
-      </AppBar>
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 p-4 max-w-[1920px] mx-auto">
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <CardPopularProducts />
+      </div>
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <CardSalesSummary />
+      </div>
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <CardPurchaseSummary />
+      </div>
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <CardExpenseSummary />
+      </div>
 
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          {tabConfig.find((tab) => tab.key === tabValue)?.label}
-        </Typography>
-        <Divider sx={{ mb: 2 }} />
-        {renderComponent()}
-      </Container>
-    </Box>
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <StatCard
+          title="Customer & Expenses"
+          primaryIcon={<Package className="text-blue-600 w-6 h-6" />}
+          dateRange="22 - 29 October 2023"
+          details={[
+            {
+              title: "Customer Growth",
+              amount: "175.00",
+              changePercentage: 131,
+              IconComponent: TrendingUp,
+            },
+            {
+              title: "Expenses",
+              amount: "10.00",
+              changePercentage: -56,
+              IconComponent: TrendingDown,
+            },
+          ]}
+        />
+      </div>
+
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <StatCard
+          title="Dues & Pending Orders"
+          primaryIcon={<CheckCircle className="text-blue-600 w-6 h-6" />}
+          dateRange="22 - 29 October 2023"
+          details={[
+            {
+              title: "Dues",
+              amount: "250.00",
+              changePercentage: 131,
+              IconComponent: TrendingUp,
+            },
+            {
+              title: "Pending Orders",
+              amount: "147",
+              changePercentage: -56,
+              IconComponent: TrendingDown,
+            },
+          ]}
+        />
+      </div>
+
+      <div className="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <StatCard
+          title="Sales & Discount"
+          primaryIcon={<Tag className="text-blue-600 w-6 h-6" />}
+          dateRange="22 - 29 October 2023"
+          details={[
+            {
+              title: "Sales",
+              amount: "1000.00",
+              changePercentage: 20,
+              IconComponent: TrendingUp,
+            },
+            {
+              title: "Discount",
+              amount: "200.00",
+              changePercentage: -10,
+              IconComponent: TrendingDown,
+            },
+          ]}
+        />
+      </div>
+    </div>
   );
 };
 
 export default Page;
 
 // "use client";
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-// const columns: GridColDef<(typeof rows)[number]>[] = [
-//   { field: "id", headerName: "ID", width: 90 },
-//   {
-//     field: "firstName",
-//     headerName: "First name",
-//     width: 150,
-//     editable: true,
-//   },
-//   {
-//     field: "lastName",
-//     headerName: "Last name",
-//     width: 150,
-//     editable: true,
-//   },
-//   {
-//     field: "age",
-//     headerName: "Age",
-//     type: "number",
-//     width: 110,
-//     editable: true,
-//   },
-//   {
-//     field: "fullName",
-//     headerName: "Full name",
-//     description: "This column has a value getter and is not sortable.",
-//     sortable: false,
-//     width: 160,
-//     valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
-//   },
-// ];
-
-// const rows = [
-//   { id: 1, lastName: "Snow", firstName: "Jon", age: 14 },
-//   { id: 2, lastName: "Lannister", firstName: "Cersei", age: 31 },
-//   { id: 3, lastName: "Lannister", firstName: "Jaime", age: 31 },
-//   { id: 4, lastName: "Stark", firstName: "Arya", age: 11 },
-//   { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-//   { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-//   { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-//   { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-//   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-//   { id: 10, lastName: "Snow", firstName: "Jon", age: 14 },
-//   { id: 11, lastName: "Snow", firstName: "Jon", age: 14 },
-//   { id: 12, lastName: "Lannister", firstName: "Cersei", age: 31 },
-//   { id: 13, lastName: "Lannister", firstName: "Jaime", age: 31 },
-//   { id: 14, lastName: "Stark", firstName: "Arya", age: 11 },
-//   { id: 15, lastName: "Targaryen", firstName: "Daenerys", age: null },
-//   { id: 16, lastName: "Melisandre", firstName: null, age: 150 },
-//   { id: 17, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-//   { id: 18, lastName: "Frances", firstName: "Rossini", age: 36 },
-//   { id: 19, lastName: "Roxie", firstName: "Harvey", age: 65 },
-// ];
+// import {
+//   CheckCircle,
+//   Package,
+//   Tag,
+//   TrendingDown,
+//   TrendingUp,
+// } from "lucide-react";
+// import CardExpenseSummary from "@/app/(components)/Test/Dashboard/CardExpenseSummary";
+// import CardPopularProducts from "@/app/(components)/Test/Dashboard/CardPopularProducts";
+// import CardPurchaseSummary from "@/app/(components)/Test/Dashboard/CardPurchaseSummary";
+// import CardSalesSummary from "@/app/(components)/Test/Dashboard/CardSalesSummary";
+// import StatCard from "@/app/(components)/Test/Dashboard/StatCard";
 
 // const Page = () => {
 //   return (
-//     <Box sx={{ width: "100%" }}>
-//       <DataGrid
-//         rows={rows}
-//         columns={columns}
-//         autoHeight // ✅ this enables dynamic height
-//         initialState={{
-//           pagination: {
-//             paginationModel: {
-//               pageSize: 10,
-//               page: 0,
-//             },
+//     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto gap-10 pb-4 custom-grid-rows">
+//       <CardPopularProducts />
+//       <CardSalesSummary />
+//       <CardPurchaseSummary />
+//       <CardExpenseSummary />
+//       <StatCard
+//         title="Customer & Expenses"
+//         primaryIcon={<Package className="text-blue-600 w-6 h-6" />}
+//         dateRange="22 - 29 October 2023"
+//         details={[
+//           {
+//             title: "Customer Growth",
+//             amount: "175.00",
+//             changePercentage: 131,
+//             IconComponent: TrendingUp,
 //           },
-//         }}
-//         pageSizeOptions={[10]}
-//         checkboxSelection
-//         disableRowSelectionOnClick
+//           {
+//             title: "Expenses",
+//             amount: "10.00",
+//             changePercentage: -56,
+//             IconComponent: TrendingDown,
+//           },
+//         ]}
 //       />
-//     </Box>
+//       <StatCard
+//         title="Dues & Pending Orders"
+//         primaryIcon={<CheckCircle className="text-blue-600 w-6 h-6" />}
+//         dateRange="22 - 29 October 2023"
+//         details={[
+//           {
+//             title: "Dues",
+//             amount: "250.00",
+//             changePercentage: 131,
+//             IconComponent: TrendingUp,
+//           },
+//           {
+//             title: "Pending Orders",
+//             amount: "147",
+//             changePercentage: -56,
+//             IconComponent: TrendingDown,
+//           },
+//         ]}
+//       />
+//       <StatCard
+//         title="Sales & Discount"
+//         primaryIcon={<Tag className="text-blue-600 w-6 h-6" />}
+//         dateRange="22 - 29 October 2023"
+//         details={[
+//           {
+//             title: "Sales",
+//             amount: "1000.00",
+//             changePercentage: 20,
+//             IconComponent: TrendingUp,
+//           },
+//           {
+//             title: "Discount",
+//             amount: "200.00",
+//             changePercentage: -10,
+//             IconComponent: TrendingDown,
+//           },
+//         ]}
+//       />
+//     </div>
 //   );
 // };
 

@@ -83,8 +83,8 @@ import { Box, Typography } from "@mui/material";
 import {
   DataGrid,
   GridRowEditStopReasons,
-  GridRowParams,
-  GridRowModel,
+  // GridRowParams,
+  // GridRowModel,
   GridEventListener,
 } from "@mui/x-data-grid";
 import { inventoryRows, inventoryColumns, InventoryItem } from "./sampleRows";

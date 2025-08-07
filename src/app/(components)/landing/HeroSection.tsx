@@ -8,7 +8,7 @@ const HeroSection = () => {
   return (
     <section className="flex flex-col md:flex-row items-center justify-between py-32 px-8 md:px-24 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
       {/* Left Side Content */}
-      <motion.div
+      {/* <motion.div
         className="w-full md:w-1/2 flex flex-col items-start text-left"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -19,13 +19,44 @@ const HeroSection = () => {
           component="h1"
           className="font-bold leading-tight"
         >
-          Grow Your SaaS Business Faster
+          A Digital Backbone for Business
         </Typography>
         <Typography variant="h6" className="leading-relaxed mb-6">
           The all-in-one platform to manage your customers, sales, and marketing
           efforts.
+          We are the solution, you can trust.
         </Typography>
-        <Button variant="contained" color="secondary" size="large">
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          className="mt-8 w-full sm:w-auto px-8"
+        >
+          Get early access
+        </Button>
+      </motion.div> */}
+      <motion.div
+        className="w-full md:w-1/2 flex flex-col items-start text-left gap-1"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Typography
+          variant="h2"
+          component="h1"
+          className="font-bold leading-tight"
+        >
+          A Digital Backbone for Business
+        </Typography>
+        <Typography variant="h6" className="leading-relaxed">
+          The all-in-one platform to manage customers, sales, and marketing.
+        </Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          className="w-full sm:w-auto px-8"
+        >
           Get early access
         </Button>
       </motion.div>

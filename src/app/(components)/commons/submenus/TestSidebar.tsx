@@ -8,9 +8,12 @@ import {
   CircleDollarSign,
   ShoppingCart,
   Store,
-  Car,
+  // Car,
   Menu,
   LucideIcon,
+  ChartSpline,
+  Archive,
+  Clipboard,
 } from "lucide-react";
 //import Image from "next/image";
 import Link from "next/link";
@@ -102,6 +105,7 @@ const TestSidebar = () => {
           label="Dashboard"
           isCollapsed={isSidebarCollapsed}
         />
+
         <SidebarLink
           href="/tenant/test/datagrid"
           icon={CircleDollarSign}
@@ -109,7 +113,25 @@ const TestSidebar = () => {
           isCollapsed={isSidebarCollapsed}
         />
         <SidebarLink
-          href="/tenant/test/home"
+          href="/tenant/test/chart"
+          icon={ChartSpline}
+          label="Chart"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/tenant/test/inventory"
+          icon={Archive}
+          label="Inventory"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/tenant/test/products"
+          icon={Clipboard}
+          label="Products"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/tenant/test/order"
           icon={List}
           label="Order"
           isCollapsed={isSidebarCollapsed}
@@ -124,12 +146,6 @@ const TestSidebar = () => {
           href="/tenant/test/home"
           icon={Store}
           label="MarketPlace"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/tenant/test/home"
-          icon={Car}
-          label="Syed Emon"
           isCollapsed={isSidebarCollapsed}
         />
       </div>
